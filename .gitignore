@@ -1,0 +1,8 @@
+.preview-profile/
+artifacts/
+node_modules/
+.tools/
+_site/
+.env
+.env.*
+better-me-*.json

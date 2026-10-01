@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#c4ed83">
+  <meta name="description" content="你的个人状态养成计划：每日习惯、训练安排、体重记录。">
+  <title>BETTER ME · 我的状态养成计划</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18m-13 5h2m4 0h2"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 3v17h17M8 15l4-5 4 2 5-7"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h8m4 0h4M4 17h3m4 0h9"/><circle cx="14" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.8 7.2L22 12l-7.2 2.8L12 22l-2.8-7.2L2 12l7.2-2.8z"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s-7 7.3-7 12a7 7 0 0 0 14 0c0-4.7-7-12-7-12Z"/><path d="M8 15a4 4 0 0 0 4 4"/></symbol>
+    <symbol id="i-food" viewBox="0 0 24 24"><path d="M4 3v6a3 3 0 0 0 6 0V3M7 3v18M18 3c-3 3-4 7-3 10h4m0-10v18"/></symbol>
+    <symbol id="i-dumbbell" viewBox="0 0 24 24"><path d="m7 7 10 10M3 8l5-5m8 18 5-5M2 5l3-3m14 20 3-3M5 10l5-5m4 14 5-5"/></symbol>
+    <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M5 9h14m-7-2v7m-5 7 5-7 5 7"/></symbol>
+    <symbol id="i-shirt" viewBox="0 0 24 24"><path d="m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4a4 4 0 0 1-8 0Z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14A9 9 0 0 1 10 3.5 9 9 0 1 0 20.5 14Z"/></symbol>
+    <symbol id="i-fire" viewBox="0 0 24 24"><path d="M12 2c2 5 7 7 7 13a7 7 0 0 1-14 0c0-3 2-6 4-8 0 3 1 4 2 4 2-3 2-6 1-9Z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 15v5h16v-5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </defs></svg>
+
+  <aside class="sidebar">
+    <a class="brand" href="#today" aria-label="Better Me 首页"><span class="brand-mark">b<span>m</span><i></i></span><span>BETTER ME<small>自 己 的 理 想 型</small></span></a>
+    <div class="sidebar-label">我的成长空间</div>
+    <nav class="navigation" aria-label="主导航">
+      <button class="nav-item active" data-view="today"><svg><use href="#i-grid"/></svg><span>今日打卡</span><i></i></button>
+      <button class="nav-item" data-view="plan"><svg><use href="#i-calendar"/></svg><span>每周计划</span></button>
+      <button class="nav-item" data-view="history"><svg><use href="#i-chart"/></svg><span>成长记录</span></button>
+    </nav>
+    <div class="sidebar-bottom"><div class="small-note"><svg><use href="#i-spark"/></svg><p>不用一次改变很多。<br><strong>每天，比昨天好一点。</strong></p><span>SMALL STEPS. REAL CHANGE.</span></div><button class="nav-item" id="settings-button"><svg><use href="#i-sliders"/></svg><span>个人设置</span></button><div class="storage-label"><span></span>记录保存在此浏览器</div></div>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">我的成长空间 <span>/</span> <strong id="breadcrumb-current">今日打卡</strong></div><div class="topbar-right"><span id="header-date"></span><button class="avatar" id="avatar-button" aria-label="编辑个人资料">ME</button></div></header>
+    <main>
+      <section class="page-heading"><div><div class="eyebrow">A LITTLE BETTER, EVERY DAY</div><h1 id="page-title">今天，也要好好发光<span>✳</span></h1><p id="page-subtitle">变帅没有快捷键，但每一个小习惯都算数。</p></div><div class="streak-badge"><svg><use href="#i-fire"/></svg><div><strong id="streak-number">0 天</strong><small>连续全勤</small></div></div></section>
+
+      <div id="view-today" class="view">
+        <section class="overview-grid">
+          <div class="hero-card"><div class="hero-copy"><span class="pill"><span></span>为你定制的状态养成计划</span><h2>把状态，<br>练成你的底气。</h2><p>吃好一点 · 站直一点 · 精神一点<br>从照顾自己开始，遇见更好的自己。</p><div class="profile-chips" id="profile-chips"></div><button class="dark-button" id="view-plan-button">看看我的计划 <svg><use href="#i-arrow"/></svg></button></div><div class="hero-art" aria-hidden="true"><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-orbit"></div><div class="art-ball"></div><div class="art-pedestal pedestal-one"></div><div class="art-pedestal pedestal-two"></div><div class="art-spark">✳</div><div class="art-caption">BECOME<br>YOUR OWN<br><b>TYPE.</b></div><div class="art-line"></div><span class="art-edition">THE EVERYDAY PROJECT / 01</span></div></div>
+          <div class="progress-card"><div class="card-heading"><h2>今日完成度</h2><span class="muted-small" id="progress-day">LET'S GO</span></div><div class="progress-ring"><svg viewBox="0 0 180 180" aria-hidden="true"><circle class="ring-track" cx="90" cy="90" r="74"/><circle id="progress-circle" cx="90" cy="90" r="74"/></svg><div><strong id="progress-percent">0<span>%</span></strong><p id="progress-count">已完成 0 / 6 项</p></div></div><p class="progress-message" id="progress-message">一个小小的开始，就很棒。</p><div class="progress-footer"><span class="green-dot"></span><span>坚持比完美更重要</span><svg><use href="#i-spark"/></svg></div></div>
+        </section>
+
+        <section class="week-card"><div class="week-label"><span class="eyebrow">THIS WEEK</span><strong>一周的好状态</strong><small id="week-range"></small></div><div class="week-days" id="week-days"></div><div class="week-summary"><strong id="week-completed">0<span> / 7</span></strong><small>全勤天数</small></div></section>
+
+        <div class="content-grid"><section class="habits-section"><div class="section-heading"><div><h2>每日养成清单 <span id="task-date-label">TODAY</span></h2><p>不着急，把这些小事一件件做好。</p></div><button class="text-button" id="back-today" hidden>回到今天 ↗</button></div><div class="habit-grid" id="habit-grid"></div><div class="gentle-note"><svg><use href="#i-spark"/></svg><span>状态好的标准，是更有精神、更舒服，也更像你自己。</span></div></section>
+          <aside class="right-column"><section class="weight-card"><div class="card-heading"><h2>体重记录</h2><span class="mini-tag">慢慢来</span></div><p class="muted-small">关注长期变化，不纠结一天的数字</p><div class="weight-number"><strong id="current-weight">48.0</strong><span>kg</span><span class="weight-change" id="weight-change">初始记录</span></div><div id="weight-chart" class="weight-chart"></div><div class="chart-axis"><span id="weight-start-date">起点</span><span>最近记录</span></div><button class="outline-button" id="add-weight"><svg><use href="#i-plus"/></svg>记录体重</button></section><section class="focus-card"><div class="focus-icon"><svg><use href="#i-dumbbell"/></svg><span>YOUR FOCUS</span></div><h3>你的主线：<br>把身体练得更有力量。</h3><p>三餐规律、循序渐进地训练，给身体足够的休息。先把习惯养起来。</p><button class="text-button" id="focus-plan">查看本周训练 <svg><use href="#i-arrow"/></svg></button></section></aside></div>
+      </div>
+
+      <section id="view-plan" class="view" hidden><div class="plan-intro"><span class="pill">适合刚开始的你</span><h2>先坚持，再进阶。</h2><p>每周安排 3 次轻量力量练习，间隔休息。可以从更轻松的版本开始，次数以动作稳定、身体舒服为准。</p></div><div class="plan-grid" id="plan-grid"></div><div class="plan-bottom"><h3>比“速成”更有用的三件事</h3><div><p><b>01 / 好好吃饭</b><span>三餐规律，每餐搭配主食、蛋白质食物和蔬菜。饿了可以补充一份酸奶、鸡蛋或坚果，不以节食为目标。</span></p><p><b>02 / 保持清爽</b><span>从温和清洁、保湿、外出防晒开始。定期整理头发、胡须与指甲，找到合身、干净的基础穿搭。</span></p><p><b>03 / 给改变时间</b><span>保持规律睡眠，同一条件下记录体重。动作不适时停止；如果近期体重无意下降或长期不舒服，及时就医。</span></p></div></div></section>
+
+      <section id="view-history" class="view" hidden><div class="history-stats" id="history-stats"></div><section class="history-card"><div class="section-heading"><div><h2>每一份坚持，都有迹可循</h2><p>点击日期可以查看或补记当天习惯。</p></div><button class="outline-button compact" id="export-button"><svg><use href="#i-download"/></svg>导出记录</button></div><div class="calendar-header"><button class="icon-button" id="prev-month" aria-label="上个月">‹</button><h3 id="calendar-title"></h3><button class="icon-button" id="next-month" aria-label="下个月">›</button></div><div class="calendar-weeknames"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendar-grid"></div><div class="calendar-legend"><span><i></i>未记录</span><span><i></i>已有打卡</span><span><i></i>全部完成</span></div></section><section class="history-card weight-history"><h2>体重变化记录</h2><div id="weight-history-list"></div></section></section>
+
+      <footer><span>BETTER ME <i>·</i> 做自己的理想型</span><span>一点点坚持，会被时间看见。<svg><use href="#i-spark"/></svg></span></footer>
+    </main>
+  </div>
+  <dialog id="task-dialog"><div class="dialog-heading"><span class="eyebrow">YOUR DAILY RITUAL</span><button class="icon-button" data-close aria-label="关闭"><svg><use href="#i-close"/></svg></button></div><div id="task-detail"></div><button class="dark-button dialog-action" id="detail-check">完成这项习惯</button></dialog>
+  <dialog id="weight-dialog"><div class="dialog-heading"><h2>记录身体的小变化</h2><button class="icon-button" data-close aria-label="关闭"><svg><use href="#i-close"/></svg></button></div><p class="dialog-description">尽量在相近时间、相同条件下称重。</p><form id="weight-form"><label>记录日期<input type="date" id="weight-date" required></label><label>体重（kg）<input type="number" id="weight-input" min="20" max="300" step="0.1" inputmode="decimal" required></label><button class="dark-button dialog-action" type="submit">保存记录 <svg><use href="#i-check"/></svg></button></form></dialog>
+  <dialog id="settings-dialog"><div class="dialog-heading"><h2>我的个人资料</h2><button class="icon-button" data-close aria-label="关闭"><svg><use href="#i-close"/></svg></button></div><form id="settings-form"><div class="form-row"><label>身高（cm）<input type="number" id="profile-height" min="100" max="230" required></label><label>年龄<input type="number" id="profile-age" min="18" max="100" required></label></div><p class="dialog-description">你的方向：规律饮食、基础力量、清爽仪容。训练安排为一般入门示例，可根据自身情况调整。</p><button class="dark-button dialog-action" type="submit">保存资料</button></form><div class="data-settings"><h3>随身带走你的成长</h3><p>数据保存在当前浏览器，手机和电脑不会自动同步。更换设备或清理浏览器前，请先导出备份。</p><div class="form-row"><button class="outline-button" id="settings-export">导出备份</button><button class="outline-button" id="import-button">导入备份</button></div><input type="file" id="import-file" accept="application/json,.json" hidden><div id="import-confirm" hidden><p>已读取备份。导入将替换当前浏览器里的全部记录。</p><button class="dark-button" id="confirm-import">确认替换并导入</button><button class="text-button" id="cancel-import">取消</button></div></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div class="storage-warning" id="storage-warning" role="alert" hidden>浏览器暂时无法保存记录，请及时使用“导出备份”保存本次数据。</div>
+</body>
+</html>
